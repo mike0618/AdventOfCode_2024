@@ -24,12 +24,12 @@ for coord in antennas.values():
     if len(coord) < 2:
         continue
     for c in coord:
-        antinodes.add(c)
+        antinodes.add(c)  # add antennas to antinodes if more than 1
     for c in combinations(coord, 2):
         c0y, c0x = c[0]
         c1y, c1x = c[1]
         dy, dx = c1y - c0y, c1x - c0x
-        while True:
+        while True:  # to consider harmonics
             c0y -= dy
             c0x -= dx
             if c0y not in range(L) or c0x not in range(L):

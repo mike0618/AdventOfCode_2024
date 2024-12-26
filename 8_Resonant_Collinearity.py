@@ -22,15 +22,15 @@ for y, row in enumerate(matrix):
 
 for coord in antennas.values():
     if len(coord) < 2:
-        continue
-    for c in combinations(coord, 2):
-        c0 = c[0]
-        c1 = c[1]
-        dy, dx = c1[0] - c0[0], c1[1] - c0[1]
-        ay, ax = c0[0] - dy, c0[1] - dx
+        continue  # do not check if only 1 antenna
+    for c in combinations(coord, 2):  # check for pairs of antennas
+        c0y, c0x = c[0]
+        c1y, c1x = c[1]
+        dy, dx = c1y - c0y, c1x - c0x  # calculate deltas
+        ay, ax = c0y - dy, c0x - dx  # find coordinates of antinode
         if ay in range(L) and ax in range(L):
             antinodes.add((ay, ax))
-        ay, ax = c1[0] + dy, c1[1] + dx
+        ay, ax = c1y + dy, c1x + dx
         if ay in range(L) and ax in range(L):
             antinodes.add((ay, ax))
 
