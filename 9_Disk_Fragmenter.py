@@ -13,13 +13,13 @@ with open("9.txt") as f:
     disk_map = f.readline().strip()
 
 blocks = []
-index = 0
+id = 0
 for i, n in enumerate(disk_map):
     if i % 2:
-        blocks += ["." for _ in range(int(n))]
+        blocks += ["." for _ in range(int(n))]  # empties
     else:
-        blocks += [index for _ in range(int(n))]
-        index += 1
+        blocks += [id for _ in range(int(n))]  # id and number of blocks
+        id += 1
 
 while True:
     if "." not in blocks:
@@ -27,7 +27,7 @@ while True:
     if blocks[-1] == ".":
         blocks.pop()
         continue
-    blocks[blocks.index(".")] = blocks.pop()
+    blocks[blocks.index(".")] = blocks.pop()  # move blocks from the end to empties
 
 checksum = 0
 
