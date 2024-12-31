@@ -15,13 +15,7 @@ def get_prize(a, b, p):
     ax, ay = a
     bx, by = b
     px, py = p
-    limit_b = MAX
-    max_bx = px // bx
-    if max_bx < limit_b:
-        limit_b = max_bx
-    max_by = py // by
-    if max_by < limit_b:
-        limit_b = max_by
+    limit_b = min(MAX, px // bx, py // by)
     for cb in range(limit_b, -1, -1):
         remain_bx = px - bx * cb
         remain_by = py - by * cb
